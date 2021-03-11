@@ -1,1 +1,301 @@
-<p>customer-registration works!</p>
+<div class="container-fluid __root">
+  <div class="__title">Customer Registration</div>
+  <div>
+    <button class="btn btn-light btn__action __raised">New</button>
+    <button class="btn btn-light btn__action __raised">Submit</button>
+  </div>
+  <hr />
+  <div class="row" style="align-items: center">
+    <div class="col-xl-8">
+      <div class="row">
+        <div class="col-xl-4">Customer ID</div>
+        <div class="col-xl-7">
+          <div class="row" style="padding: 0">
+            <div class="col-xl-6">TBA</div>
+            <div class="col-xl-6" style="color: red">New*</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4">
+      <div class="row" style="align-items: center">
+        <div class="col-xl-6">Registration Date</div>
+        <div class="col-xl-6">
+          <input type="date" class="form-control form__input" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-8">
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">Customer Type</div>
+        <div class="col-xl-7">
+          <div class="row" style="padding: 0">
+            <div class="col-xl-6">
+              <select class="form-control form__input"></select>
+            </div>
+            <div class="col-xl-6">
+              <select class="form-control form__input"></select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">Sector (Optional)</div>
+        <div class="col-xl-7">
+          <select class="form-control form__input"></select>
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">Name<span style="color: red">*</span></div>
+        <div class="col-xl-7">
+          <div class="row" style="padding: 0">
+            <div class="col-xl-6">
+              <input
+                type="text"
+                placeholder="U/Daw"
+                class="form-control form__input"
+              />
+            </div>
+            <div class="col-xl-6">
+              <input
+                type="text"
+                placeholder="Name"
+                class="form-control form__input"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">Alias Name (Optional)</div>
+        <div class="col-xl-7">
+          <input type="text" class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">IC/NRIC<span style="color: red">*</span></div>
+        <div class="col-xl-7">
+          <input type="text" class="form-control form__input" />
+        </div>
+        <div class="col-xl-1" style="padding-left: 0 !important">
+          <button class="btn btn-light btn__check __raised">Check</button>
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">Passport No</div>
+        <div class="col-xl-7">
+          <input type="text" class="form-control form__input" />
+        </div>
+        <div class="col-xl-1" style="padding-left: 0 !important">
+          <button class="btn btn-light btn__check __raised">Check</button>
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">
+          Father's Name<span style="color: red">*</span>
+        </div>
+        <div class="col-xl-7">
+          <input type="text" class="form-control form__input" />
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4">
+      <div class="row">
+        <div class="col-xl-6">Photo</div>
+        <div class="col-xl-6">
+          <div class="image__container">
+            <i class="far fa-user" style="font-size: 5rem; color: #efefef"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="__title" style="margin: 1rem 0">Identification</div>
+  <hr />
+  <div class="row">
+    <div class="col-xl-7">
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">Date of Birth</div>
+        <div class="col-xl-5">
+          <input type="date" class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">Gender</div>
+        <div class="col-xl-8">
+          <div class="row">
+            <div class="col-xl-4" style="display: flex; align-items: center">
+              <input type="radio" name="gender" value="1" />
+              <div style="padding-left: 0.5rem">Male</div>
+            </div>
+            <div class="col-xl-4" style="display: flex; align-items: center">
+              <input type="radio" name="gender" value="2" />
+              <div style="padding-left: 0.5rem">Female</div>
+            </div>
+            <div class="col-xl-4" style="display: flex; align-items: center">
+              <input type="radio" name="gender" value="3" />
+              <div style="padding-left: 0.5rem">Other</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">Martial Status</div>
+        <div class="col-xl-8">
+          <div class="row">
+            <div class="col-xl-4" style="display: flex; align-items: center">
+              <input type="radio" name="status" value="1" />
+              <div style="padding-left: 0.5rem">Single</div>
+            </div>
+            <div class="col-xl-4" style="display: flex; align-items: center">
+              <input type="radio" name="status" value="2" />
+              <div style="padding-left: 0.5rem">Married</div>
+            </div>
+            <div class="col-xl-4" style="display: flex; align-items: center">
+              <input type="radio" name="status" value="3" />
+              <div style="padding-left: 0.5rem">Other</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">Document Associated</div>
+        <div class="col-xl-8">
+          <div class="row" style="align-items: center">
+            <div class="col-xl-3">
+              <button
+                class="btn btn-light btn__check __raised"
+                (click)="chooseFile()"
+              >
+                Choose File
+              </button>
+              <input
+                multiple
+                id="fileInput"
+                type="file"
+                style="display: none"
+                (change)="onFileChoosen($event)"
+              />
+            </div>
+            <div *ngIf="!selectedFiles.length" class="col-xl-9">
+              No File Choosen
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-5">
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Occupation</div>
+        <div class="col-xl-7">
+          <select class="form-control form__input"></select>
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Telephone<span style="color: red">*</span></div>
+        <div class="col-xl-7">
+          <input type="text" class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Email</div>
+        <div class="col-xl-7">
+          <select class="form-control form__input"></select>
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Nationality</div>
+        <div class="col-xl-7">
+          <select class="form-control form__input"></select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="selectedFiles.length">
+    <div class="col-xl-9">
+      <table class="table" style="border-collapse: separate">
+        <thead>
+          <tr style="background-color: skyblue">
+            <th style="text-align: center">File Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of selectedFiles">
+            <td style="text-decoration: underline; text-align: center">
+              {{ item.file.name }}
+            </td>
+            <td style="text-align: center">
+              <i
+                class="fas fa-times-circle"
+                style="color: red; font-size: 1.5rem"
+                (click)="deleteFile(item.key)"
+              ></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="__title" style="margin: 1rem 0">Address</div>
+  <hr />
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="row">
+        <div class="col-xl-4">Unit</div>
+        <div class="col-xl-7">
+          <input type="text" class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-4">Builting No<span style="color: red">*</span></div>
+        <div class="col-xl-7">
+          <input type="text" class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-4">Township<span style="color: red">*</span></div>
+        <div class="col-xl-7">
+          <input type="text" class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-4">
+          Division/State<span style="color: red">*</span>
+        </div>
+        <div class="col-xl-7">
+          <input type="text" class="form-control form__input" />
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6">
+      <div class="row">
+        <div class="col-xl-4">Block</div>
+        <div class="col-xl-7">
+          <input type="text" class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-4">Street<span style="color: red">*</span></div>
+        <div class="col-xl-7">
+          <input type="text" class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-4">Country<span style="color: red">*</span></div>
+        <div class="col-xl-7">
+          <input type="text" class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-4">Postal/Zip (Optional)</div>
+        <div class="col-xl-7">
+          <input type="text" class="form-control form__input" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
