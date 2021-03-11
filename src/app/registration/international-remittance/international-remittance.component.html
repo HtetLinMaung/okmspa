@@ -1,1 +1,332 @@
-<p>international-remittance works!</p>
+<div class="container-fluid __root">
+  <div class="__title" style="margin: 0.5rem 0">
+    International Remittance (Send Money)
+  </div>
+  <div>
+    <button class="btn btn-light btn__action __raised">New</button>
+    <button class="btn btn-light btn__action __raised">Submit</button>
+  </div>
+  <hr />
+  <div class="row" style="align-items: center">
+    <div class="col-xl-8">
+      <div class="row">
+        <div class="col-xl-4">Remit Serial No</div>
+        <div class="col-xl-7">
+          <div class="row" style="padding: 0">
+            <div class="col-xl-6">D</div>
+            <div class="col-xl-6" style="color: red">New*</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4">
+      <div class="row" style="align-items: center">
+        <div class="col-xl-6">Transaction Date</div>
+        <div class="col-xl-6">
+          <input type="date" class="form-control form__input" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-8">
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">
+          From Country<span style="color: red">*</span>
+        </div>
+        <div class="col-xl-7">
+          <div class="row" style="padding: 0">
+            <div class="col-xl-6">
+              <select class="form-control form__input"></select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">To Country<span style="color: red">*</span></div>
+        <div class="col-xl-7">
+          <div class="row" style="padding: 0">
+            <div class="col-xl-6">
+              <select class="form-control form__input"></select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">Currency<span style="color: red">*</span></div>
+        <div class="col-xl-7">
+          <div class="row" style="padding: 0">
+            <div class="col-xl-6">
+              <select class="form-control form__input"></select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">
+          Transfer Amount<span style="color: red">*</span>
+        </div>
+        <div class="col-xl-7">
+          <div class="row" style="padding: 0">
+            <div class="col-xl-6">
+              <input
+                type="text"
+                class="form-control form__input"
+                style="text-align: right"
+                value="0.00"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="__title" style="margin: 1rem 0">Transaction Detail</div>
+  <hr />
+  <div class="row">
+    <div class="col-xl-8">
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">Purpose of Transaction</div>
+        <div class="col-xl-7">
+          <div class="row" style="padding: 0">
+            <div class="col-xl-6">
+              <select class="form-control form__input"></select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">Method of Payment</div>
+        <div class="col-xl-7">
+          <div class="row" style="padding: 0">
+            <div class="col-xl-6">
+              <select class="form-control form__input"></select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">Method of Collection</div>
+        <div class="col-xl-7">
+          <div class="row" style="padding: 0">
+            <div class="col-xl-6">
+              <select class="form-control form__input"></select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">Remark</div>
+        <div class="col-xl-7">
+          <div class="row" style="padding: 0">
+            <div class="col-xl-6">
+              <textarea class="form-control form__input"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="__title" style="margin: 1rem 0">Sender Information</div>
+  <hr />
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">
+          Sender Customer ID<span style="color: red">*</span>
+        </div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Name<span style="color: red">*</span></div>
+        <div div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">NRC No<span style="color: red">*</span></div>
+        <div div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Unit</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Building Name</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Township</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Division/State</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Contact Phone No</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6">
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Date of Birth</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <input type="date" class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Passport No</div>
+        <div div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Block</div>
+        <div div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Street</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Country</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Postal/Zip</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Email</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="__title" style="margin: 1rem 0">Receiver Information</div>
+  <hr />
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">
+          Receiver Customer ID<span style="color: red">*</span>
+        </div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Name<span style="color: red">*</span></div>
+        <div div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">NRC No<span style="color: red">*</span></div>
+        <div div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Unit</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Building Name</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Township</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Division/State</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Contact Phone No</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6">
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Date of Birth</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <input type="date" class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Passport No</div>
+        <div div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Block</div>
+        <div div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Street</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Country</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Postal/Zip</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Email</div>
+        <div class="col-xl-6" style="padding-left: 2.1rem">
+          <input class="form-control form__input" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,24 @@
+.__root {
+  font-size: 13px;
+  margin-bottom: 3rem;
+}
+.row {
+  padding: 0.3rem;
+}
+.image__container {
+  width: 100%;
+  border: 1px solid #c4c4c4;
+  height: 188px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn__check {
+  width: 100%;
+  background-color: #efefef !important;
+  font-size: 11px;
+}
+
 .btn__action {
   margin: 0.5rem;
   width: 100px;
@@ -6,24 +27,4 @@
   padding-bottom: 2px;
   background-color: #efefef !important;
   border-radius: 4px;
-}
-.__root {
-  font-size: 13px;
-}
-.btn__check {
-  width: 100%;
-  background-color: #efefef !important;
-  font-size: 11px;
-}
-.row {
-  padding: 0.3rem;
-}
-
-.image__container {
-  width: 100%;
-  border: 1px solid #c4c4c4;
-  height: 188px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "deploy-build": "ng build --prod && cp -R dist /Users/htetlinmaung/mit/projects/okmspa_deploy",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

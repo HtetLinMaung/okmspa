@@ -106,3 +106,18 @@ router-outlet + * {
 .__title {
   font-size: 20px;
 }
+.btn__check {
+  width: 100%;
+  background-color: #efefef !important;
+  font-size: 11px;
+}
+
+.btn__action {
+  margin: 0.5rem;
+  width: 100px;
+  font-size: 12px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: #efefef !important;
+  border-radius: 4px;
+}
