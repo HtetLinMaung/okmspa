@@ -33,10 +33,25 @@
         <div class="col-xl-7">
           <div class="row" style="padding: 0">
             <div class="col-xl-6">
-              <select class="form-control form__input"></select>
+              <select
+                class="form-control form__input"
+                [(ngModel)]="selectedFilter"
+                (change)="onTypeFilterChanged($event)"
+              >
+                <option *ngFor="let item of typeFilters" [value]="item.value">
+                  {{ item.text }}
+                </option>
+              </select>
             </div>
             <div class="col-xl-6">
-              <select class="form-control form__input"></select>
+              <select
+                class="form-control form__input"
+                [(ngModel)]="form.customerType"
+              >
+                <option *ngFor="let item of customerTypes" [value]="item.value">
+                  {{ item.text }}
+                </option>
+              </select>
             </div>
           </div>
         </div>
@@ -190,7 +205,14 @@
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Occupation</div>
         <div class="col-xl-7">
-          <select class="form-control form__input"></select>
+          <select
+            class="form-control form__input"
+            [(ngModel)]="form.occupation"
+          >
+            <option *ngFor="let item of occupations" [value]="item.value">
+              {{ item.text }}
+            </option>
+          </select>
         </div>
       </div>
       <div class="row" style="align-items: center">

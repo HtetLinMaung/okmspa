@@ -6,12 +6,14 @@ import { RegistrationModule } from './registration/registration.module';
 import { DemoComponent } from './demo/demo.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, DemoComponent],
   imports: [
     BrowserModule,
     RegistrationModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {
         path: '',

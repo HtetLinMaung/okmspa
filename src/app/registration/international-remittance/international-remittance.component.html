@@ -37,7 +37,17 @@
         <div class="col-xl-7">
           <div class="row" style="padding: 0">
             <div class="col-xl-6">
-              <select class="form-control form__input"></select>
+              <select
+                class="form-control form__input"
+                [(ngModel)]="form.fromcountry"
+              >
+                <option
+                  *ngFor="let item of countries"
+                  [value]="item.countryName"
+                >
+                  {{ item.countryName }}
+                </option>
+              </select>
             </div>
           </div>
         </div>
@@ -47,7 +57,17 @@
         <div class="col-xl-7">
           <div class="row" style="padding: 0">
             <div class="col-xl-6">
-              <select class="form-control form__input"></select>
+              <select
+                class="form-control form__input"
+                [(ngModel)]="form.tocountry"
+              >
+                <option
+                  *ngFor="let item of countries"
+                  [value]="item.countryName"
+                >
+                  {{ item.countryName }}
+                </option>
+              </select>
             </div>
           </div>
         </div>
@@ -90,7 +110,14 @@
         <div class="col-xl-7">
           <div class="row" style="padding: 0">
             <div class="col-xl-6">
-              <select class="form-control form__input"></select>
+              <select class="form-control form__input" [(ngModel)]="form.t1">
+                <option
+                  *ngFor="let item of transactionPurposes"
+                  [value]="item.value"
+                >
+                  {{ item.text }}
+                </option>
+              </select>
             </div>
           </div>
         </div>
@@ -100,7 +127,14 @@
         <div class="col-xl-7">
           <div class="row" style="padding: 0">
             <div class="col-xl-6">
-              <select class="form-control form__input"></select>
+              <select class="form-control form__input" [(ngModel)]="form.n1">
+                <option
+                  *ngFor="let item of paymentMethods"
+                  [value]="item.value"
+                >
+                  {{ item.text }}
+                </option>
+              </select>
             </div>
           </div>
         </div>
@@ -110,7 +144,14 @@
         <div class="col-xl-7">
           <div class="row" style="padding: 0">
             <div class="col-xl-6">
-              <select class="form-control form__input"></select>
+              <select class="form-control form__input" [(ngModel)]="form.n2">
+                <option
+                  *ngFor="let item of collectionMethods"
+                  [value]="item.value"
+                >
+                  {{ item.text }}
+                </option>
+              </select>
             </div>
           </div>
         </div>
