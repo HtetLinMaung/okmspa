@@ -1,7 +1,9 @@
 <div class="container-fluid __root">
   <div class="__title" style="margin: 0.5rem 0">Customer Registration</div>
   <div>
-    <button class="btn btn-light btn__action __raised">New</button>
+    <button class="btn btn-light btn__action __raised" (click)="new()">
+      New
+    </button>
     <button class="btn btn-light btn__action __raised" (click)="submit()">
       Submit
     </button>
@@ -158,13 +160,13 @@
             (change)="onPhotoChoosen($event)"
           />
           <img
-            *ngIf="selectedPhoto.src"
+            *ngIf="form.photo"
             class="image__container"
             (click)="pickImage()"
-            [src]="selectedPhoto.src"
+            [src]="form.photo"
           />
           <div
-            *ngIf="!selectedPhoto.src"
+            *ngIf="!form.photo"
             class="image__container"
             (click)="pickImage()"
           >
@@ -277,7 +279,7 @@
                 (change)="onFileChoosen($event)"
               />
             </div>
-            <div *ngIf="!selectedFiles.length" class="col-xl-9">
+            <div *ngIf="!form.documents.length" class="col-xl-9">
               No File Choosen
             </div>
           </div>
@@ -330,7 +332,7 @@
       </div>
     </div>
   </div>
-  <div class="row" *ngIf="selectedFiles.length">
+  <div class="row" *ngIf="form.documents.length">
     <div class="col-xl-9">
       <table class="table" style="border-collapse: separate">
         <thead>
@@ -340,9 +342,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of selectedFiles">
+          <tr *ngFor="let item of form.documents">
             <td style="text-decoration: underline; text-align: center">
-              {{ item.file.name }}
+              {{ item.fileName }}
             </td>
             <td style="text-align: center">
               <i

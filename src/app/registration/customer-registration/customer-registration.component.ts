@@ -8,6 +8,39 @@ const defaultComboData = {
   value: '-',
 };
 
+const defaultForm = {
+  t2: 'SysAdmin',
+  isHasDoc: false,
+  status: Status.Save,
+  customerType: '-',
+  title: '',
+  name: '',
+  aliasName: '',
+  nrcNo: '',
+  passportNo: '',
+  occupation: '-',
+  sector: '-',
+  fatherName: '',
+  registrationDate: '',
+  dateOfBirth: '',
+  sex: '1',
+  mStatus: '1',
+  phone: '',
+  email: '',
+  nationalityStatus: '',
+  houseNo: '',
+  buildingName: '',
+  township: '',
+  division: '',
+  street: '',
+  country: '',
+  ward: '',
+  postalCode: '',
+  photo: '',
+  fileName: '',
+  documents: [],
+};
+
 @Component({
   selector: 'app-customer-registration',
   templateUrl: './customer-registration.component.html',
@@ -16,41 +49,8 @@ const defaultComboData = {
 export class CustomerRegistrationComponent
   extends SuggestionListHelper
   implements OnInit {
-  form = {
-    t2: 'SysAdmin',
-    isHasDoc: false,
-    status: Status.Save,
-    customerType: '-',
-    title: '',
-    name: '',
-    aliasName: '',
-    nrcNo: '',
-    passportNo: '',
-    occupation: '-',
-    sector: '-',
-    fatherName: '',
-    registrationDate: '',
-    dateOfBirth: '',
-    sex: '1',
-    mStatus: '1',
-    phone: '',
-    email: '',
-    nationalityStatus: '',
-    houseNo: '',
-    buildingName: '',
-    township: '',
-    division: '',
-    street: '',
-    country: '',
-    ward: '',
-    postalCode: '',
-  };
+  form = { ...defaultForm };
   sectors = [defaultComboData];
-  selectedFiles = [];
-  selectedPhoto = {
-    file: null,
-    src: '',
-  };
   occupations = [defaultComboData];
   nameTitles = [];
   countries = [];
@@ -127,13 +127,30 @@ export class CustomerRegistrationComponent
   onFileChoosen(e) {
     let i = 1;
     for (const file of e.target.files) {
-      this.selectedFiles.push({ file, key: i++ });
+      this.getBase64FileAsync(file).then((src: string) => {
+        this.form.documents.push({
+          file: src,
+          key: i++,
+          fileName: file.name,
+        });
+      });
     }
     e.target.value = '';
   }
 
+  getBase64FileAsync(file) {
+    return new Promise((resolve, reject) => {
+      if (!file) reject('');
+      const fr = new FileReader();
+      fr.addEventListener('load', () => {
+        resolve(fr.result);
+      });
+      fr.readAsDataURL(file);
+    });
+  }
+
   deleteFile(key: number) {
-    this.selectedFiles = this.selectedFiles.filter((v) => v.key != key);
+    this.form.documents = this.form.documents.filter((v) => v.key != key);
   }
 
   onTypeFilterChanged(e) {
@@ -158,18 +175,48 @@ export class CustomerRegistrationComponent
       });
   }
 
-  new() {}
+  new() {
+    this.form = { ...defaultForm };
+  }
+
+  isValidated() {
+    const requiredFields = [
+      'customerType',
+      'name',
+      'nrcNo',
+      'fatherName',
+      'phone',
+      'buildingName',
+      'township',
+      'division',
+      'street',
+      'country',
+    ];
+
+    for (const field of requiredFields) {
+      if (this.form[field] == '-' || !this.form[field]) {
+        return false;
+      }
+    }
+    return this.form.documents.length;
+  }
 
   submit() {
-    const body = {
-      ...this.form,
-      isHasDoc: this.form.isHasDoc ? 'Yes' : 'No',
-      dateOfBirth: this.form.dateOfBirth + ' 00:00:00.000',
-      registrationDate: this.form.registrationDate + ' 00:00:00.000',
-      // dateOfBirth: new Date(this.form.dateOfBirth).toISOString(),
-      // registrationDate: new Date(this.form.registrationDate).toISOString(),
-    };
-    this.http.doPost('customer-registrations', body).subscribe((data) => {});
+    if (this.isValidated()) {
+      const body = {
+        ...this.form,
+        isHasDoc: this.form.isHasDoc ? 'Yes' : 'No',
+        dateOfBirth: this.form.dateOfBirth + ' 00:00:00.000',
+        registrationDate: this.form.registrationDate + ' 00:00:00.000',
+        // dateOfBirth: new Date(this.form.dateOfBirth).toISOString(),
+        // registrationDate: new Date(this.form.registrationDate).toISOString(),
+      };
+      this.http.doPost('customer-registrations', body).subscribe((data) => {
+        this.new();
+      });
+    } else {
+      alert('Please fill all required fields!');
+    }
   }
 
   pickImage() {
@@ -179,10 +226,10 @@ export class CustomerRegistrationComponent
   onPhotoChoosen(e) {
     const file = e.target.files[0];
     if (file) {
-      this.selectedPhoto.file = file;
+      this.form.fileName = file.name;
       const fr = new FileReader();
       fr.addEventListener('load', () => {
-        this.selectedPhoto.src = fr.result as string;
+        this.form.photo = fr.result as string;
       });
       fr.readAsDataURL(file);
     }

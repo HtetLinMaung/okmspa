@@ -1,10 +1,14 @@
-<div class="container-fluid __root">
+<div class="container-fluid __root" (click)="closeBrowser()">
   <div class="__title" style="margin: 0.5rem 0">
     International Remittance (Send Money)
   </div>
   <div>
-    <button class="btn btn-light btn__action __raised">New</button>
-    <button class="btn btn-light btn__action __raised">Submit</button>
+    <button class="btn btn-light btn__action __raised" (click)="new()">
+      New
+    </button>
+    <button class="btn btn-light btn__action __raised" (click)="submit()">
+      Submit
+    </button>
   </div>
   <hr />
   <div class="row" style="align-items: center">
@@ -42,6 +46,7 @@
           <div class="row" style="padding: 0">
             <div class="col-xl-6">
               <select
+                (change)="onCountryChanged('fromcountry')"
                 class="form-control form__input"
                 [(ngModel)]="form.fromcountry"
               >
@@ -62,6 +67,7 @@
           <div class="row" style="padding: 0">
             <div class="col-xl-6">
               <select
+                (change)="onCountryChanged('tocountry')"
                 class="form-control form__input"
                 [(ngModel)]="form.tocountry"
               >
@@ -81,7 +87,14 @@
         <div class="col-xl-7">
           <div class="row" style="padding: 0">
             <div class="col-xl-6">
-              <select class="form-control form__input"></select>
+              <select
+                class="form-control form__input"
+                [(ngModel)]="form.currencycode"
+              >
+                <option *ngFor="let item of countries" [value]="item.currency">
+                  {{ item.currency }}
+                </option>
+              </select>
             </div>
           </div>
         </div>
@@ -283,7 +296,21 @@
           Sender Customer ID<span style="color: red">*</span>
         </div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input type="text" class="form-control form__input" />
+          <div class="search__wrapper">
+            <i
+              class="fas fa-search search__icon"
+              (click)="browseCustomers('fromcustomerid', $event)"
+            ></i>
+            <input
+              class="search__input"
+              placeholder="Search"
+              [(ngModel)]="form.fromcustomerid"
+            />
+            <i
+              class="fas fa-times-circle search__icon"
+              (click)="clearBrowser('fromcustomerid')"
+            ></i>
+          </div>
         </div>
       </div>
       <div class="row" style="align-items: center">
@@ -442,7 +469,21 @@
           Receiver Customer ID<span style="color: red">*</span>
         </div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <div class="search__wrapper">
+            <i
+              class="fas fa-search search__icon"
+              (click)="browseCustomers('tocustomerid', $event)"
+            ></i>
+            <input
+              class="search__input"
+              placeholder="Search"
+              [(ngModel)]="form.tocustomerid"
+            />
+            <i
+              class="fas fa-times-circle search__icon"
+              (click)="clearBrowser('tocustomerid')"
+            ></i>
+          </div>
         </div>
       </div>
       <div class="row" style="align-items: center">
@@ -476,7 +517,9 @@
         </div>
       </div>
       <div class="row" style="align-items: center">
-        <div class="col-xl-5">Building Name</div>
+        <div class="col-xl-5">
+          Building Name<span style="color: red">*</span>
+        </div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
           <input
             type="text"
@@ -486,7 +529,7 @@
         </div>
       </div>
       <div class="row" style="align-items: center">
-        <div class="col-xl-5">Township</div>
+        <div class="col-xl-5">Township<span style="color: red">*</span></div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
           <input
             type="text"
@@ -496,7 +539,9 @@
         </div>
       </div>
       <div class="row" style="align-items: center">
-        <div class="col-xl-5">Division/State</div>
+        <div class="col-xl-5">
+          Division/State<span style="color: red">*</span>
+        </div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
           <input
             type="text"
@@ -506,7 +551,9 @@
         </div>
       </div>
       <div class="row" style="align-items: center">
-        <div class="col-xl-5">Contact Phone No</div>
+        <div class="col-xl-5">
+          Contact Phone No<span style="color: red">*</span>
+        </div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
           <input
             type="text"
@@ -548,7 +595,7 @@
         </div>
       </div>
       <div class="row" style="align-items: center">
-        <div class="col-xl-5">Street</div>
+        <div class="col-xl-5">Street<span style="color: red">*</span></div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
           <input
             type="text"
@@ -558,7 +605,7 @@
         </div>
       </div>
       <div class="row" style="align-items: center">
-        <div class="col-xl-5">Country</div>
+        <div class="col-xl-5">Country<span style="color: red">*</span></div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
           <div class="autocomplete">
             <input
@@ -590,5 +637,15 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="customer-browser" class="__menu">
+  <div
+    class="list__item"
+    (click)="selectCustomer(customer)"
+    *ngFor="let customer of customers"
+  >
+    {{ customer.customerId }}
   </div>
 </div>
