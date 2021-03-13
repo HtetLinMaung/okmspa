@@ -2,7 +2,9 @@
   <div class="__title" style="margin: 0.5rem 0">Customer Registration</div>
   <div>
     <button class="btn btn-light btn__action __raised">New</button>
-    <button class="btn btn-light btn__action __raised">Submit</button>
+    <button class="btn btn-light btn__action __raised" (click)="submit()">
+      Submit
+    </button>
   </div>
   <hr />
   <div class="row" style="align-items: center">
@@ -21,7 +23,11 @@
       <div class="row" style="align-items: center">
         <div class="col-xl-6">Registration Date</div>
         <div class="col-xl-6">
-          <input type="date" class="form-control form__input" />
+          <input
+            type="date"
+            class="form-control form__input"
+            [(ngModel)]="form.registrationDate"
+          />
         </div>
       </div>
     </div>
@@ -59,7 +65,11 @@
       <div class="row" style="align-items: center">
         <div class="col-xl-4">Sector (Optional)</div>
         <div class="col-xl-7">
-          <select class="form-control form__input"></select>
+          <select class="form-control form__input" [(ngModel)]="form.sector">
+            <option *ngFor="let item of sectors" [value]="item.value">
+              {{ item.text }}
+            </option>
+          </select>
         </div>
       </div>
       <div class="row" style="align-items: center">
@@ -67,14 +77,19 @@
         <div class="col-xl-7">
           <div class="row" style="padding: 0">
             <div class="col-xl-6">
-              <input
-                type="text"
-                placeholder="U/Daw"
-                class="form-control form__input"
-              />
+              <div class="autocomplete">
+                <input
+                  id="nameTitleSuggest"
+                  type="text"
+                  placeholder="U/Daw"
+                  class="form-control form__input"
+                  [(ngModel)]="form.title"
+                />
+              </div>
             </div>
             <div class="col-xl-6">
               <input
+                [(ngModel)]="form.name"
                 type="text"
                 placeholder="Name"
                 class="form-control form__input"
@@ -86,13 +101,21 @@
       <div class="row" style="align-items: center">
         <div class="col-xl-4">Alias Name (Optional)</div>
         <div class="col-xl-7">
-          <input type="text" class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.aliasName"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-4">IC/NRIC<span style="color: red">*</span></div>
         <div class="col-xl-7">
-          <input type="text" class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.nrcNo"
+          />
         </div>
         <div class="col-xl-1" style="padding-left: 0 !important">
           <button class="btn btn-light btn__check __raised">Check</button>
@@ -101,7 +124,11 @@
       <div class="row" style="align-items: center">
         <div class="col-xl-4">Passport No</div>
         <div class="col-xl-7">
-          <input type="text" class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.passportNo"
+          />
         </div>
         <div class="col-xl-1" style="padding-left: 0 !important">
           <button class="btn btn-light btn__check __raised">Check</button>
@@ -112,7 +139,11 @@
           Father's Name<span style="color: red">*</span>
         </div>
         <div class="col-xl-7">
-          <input type="text" class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.fatherName"
+          />
         </div>
       </div>
     </div>
@@ -120,7 +151,23 @@
       <div class="row">
         <div class="col-xl-6">Photo</div>
         <div class="col-xl-6">
-          <div class="image__container">
+          <input
+            type="file"
+            id="photoInput"
+            style="display: none"
+            (change)="onPhotoChoosen($event)"
+          />
+          <img
+            *ngIf="selectedPhoto.src"
+            class="image__container"
+            (click)="pickImage()"
+            [src]="selectedPhoto.src"
+          />
+          <div
+            *ngIf="!selectedPhoto.src"
+            class="image__container"
+            (click)="pickImage()"
+          >
             <i class="far fa-user" style="font-size: 5rem; color: #efefef"></i>
           </div>
         </div>
@@ -134,7 +181,11 @@
       <div class="row" style="align-items: center">
         <div class="col-xl-4">Date of Birth</div>
         <div class="col-xl-5">
-          <input type="date" class="form-control form__input" />
+          <input
+            type="date"
+            class="form-control form__input"
+            [(ngModel)]="form.dateOfBirth"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
@@ -142,15 +193,30 @@
         <div class="col-xl-8">
           <div class="row">
             <div class="col-xl-4" style="display: flex; align-items: center">
-              <input type="radio" name="gender" value="1" />
+              <input
+                type="radio"
+                name="gender"
+                value="1"
+                [(ngModel)]="form.sex"
+              />
               <div style="padding-left: 0.5rem">Male</div>
             </div>
             <div class="col-xl-4" style="display: flex; align-items: center">
-              <input type="radio" name="gender" value="2" />
+              <input
+                type="radio"
+                name="gender"
+                value="2"
+                [(ngModel)]="form.sex"
+              />
               <div style="padding-left: 0.5rem">Female</div>
             </div>
             <div class="col-xl-4" style="display: flex; align-items: center">
-              <input type="radio" name="gender" value="3" />
+              <input
+                type="radio"
+                name="gender"
+                value="0"
+                [(ngModel)]="form.sex"
+              />
               <div style="padding-left: 0.5rem">Other</div>
             </div>
           </div>
@@ -161,22 +227,39 @@
         <div class="col-xl-8">
           <div class="row">
             <div class="col-xl-4" style="display: flex; align-items: center">
-              <input type="radio" name="status" value="1" />
+              <input
+                type="radio"
+                name="status"
+                value="1"
+                [(ngModel)]="form.mStatus"
+              />
               <div style="padding-left: 0.5rem">Single</div>
             </div>
             <div class="col-xl-4" style="display: flex; align-items: center">
-              <input type="radio" name="status" value="2" />
+              <input
+                type="radio"
+                name="status"
+                value="2"
+                [(ngModel)]="form.mStatus"
+              />
               <div style="padding-left: 0.5rem">Married</div>
             </div>
             <div class="col-xl-4" style="display: flex; align-items: center">
-              <input type="radio" name="status" value="3" />
+              <input
+                type="radio"
+                name="status"
+                value="0"
+                [(ngModel)]="form.mStatus"
+              />
               <div style="padding-left: 0.5rem">Other</div>
             </div>
           </div>
         </div>
       </div>
       <div class="row" style="align-items: center">
-        <div class="col-xl-4">Document Associated</div>
+        <div class="col-xl-4">
+          Document Associated <span style="color: red">*</span>
+        </div>
         <div class="col-xl-8">
           <div class="row" style="align-items: center">
             <div class="col-xl-3">
@@ -218,19 +301,31 @@
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Telephone<span style="color: red">*</span></div>
         <div class="col-xl-7">
-          <input type="text" class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.phone"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Email</div>
         <div class="col-xl-7">
-          <select class="form-control form__input"></select>
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.email"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Nationality</div>
         <div class="col-xl-7">
-          <select class="form-control form__input"></select>
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.nationalityStatus"
+          />
         </div>
       </div>
     </div>
@@ -269,19 +364,36 @@
       <div class="row">
         <div class="col-xl-4">Unit</div>
         <div class="col-xl-7">
-          <input type="text" class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.houseNo"
+          />
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-4">Builting No<span style="color: red">*</span></div>
+        <div class="col-xl-4">
+          Builting Number<span style="color: red">*</span>
+        </div>
         <div class="col-xl-7">
-          <input type="text" class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.buildingName"
+          />
         </div>
       </div>
       <div class="row">
         <div class="col-xl-4">Township<span style="color: red">*</span></div>
         <div class="col-xl-7">
-          <input type="text" class="form-control form__input" />
+          <div class="autocomplete">
+            <input
+              id="townshipSuggest"
+              type="text"
+              class="form-control form__input"
+              [(ngModel)]="form.township"
+            />
+          </div>
         </div>
       </div>
       <div class="row">
@@ -289,7 +401,14 @@
           Division/State<span style="color: red">*</span>
         </div>
         <div class="col-xl-7">
-          <input type="text" class="form-control form__input" />
+          <div class="autocomplete">
+            <input
+              id="divisionSuggest"
+              type="text"
+              class="form-control form__input"
+              [(ngModel)]="form.division"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -297,25 +416,44 @@
       <div class="row">
         <div class="col-xl-4">Block</div>
         <div class="col-xl-7">
-          <input type="text" class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.ward"
+          />
         </div>
       </div>
       <div class="row">
         <div class="col-xl-4">Street<span style="color: red">*</span></div>
         <div class="col-xl-7">
-          <input type="text" class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.street"
+          />
         </div>
       </div>
       <div class="row">
         <div class="col-xl-4">Country<span style="color: red">*</span></div>
         <div class="col-xl-7">
-          <input type="text" class="form-control form__input" />
+          <div class="autocomplete">
+            <input
+              id="countrySuggest"
+              type="text"
+              class="form-control form__input"
+              [(ngModel)]="form.country"
+            />
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col-xl-4">Postal/Zip (Optional)</div>
         <div class="col-xl-7">
-          <input type="text" class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.postalCode"
+          />
         </div>
       </div>
     </div>

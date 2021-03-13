@@ -23,7 +23,11 @@
       <div class="row" style="align-items: center">
         <div class="col-xl-6">Transaction Date</div>
         <div class="col-xl-6">
-          <input type="date" class="form-control form__input" />
+          <input
+            type="date"
+            class="form-control form__input"
+            [(ngModel)]="form.savedate"
+          />
         </div>
       </div>
     </div>
@@ -90,6 +94,7 @@
           <div class="row" style="padding: 0">
             <div class="col-xl-6">
               <input
+                [(ngModel)]="form.amount"
                 type="text"
                 class="form-control form__input"
                 style="text-align: right"
@@ -104,66 +109,166 @@
   <div class="__title" style="margin: 1rem 0">Transaction Detail</div>
   <hr />
   <div class="row">
-    <div class="col-xl-8">
+    <div class="col-xl-6">
       <div class="row" style="align-items: center">
-        <div class="col-xl-4">Purpose of Transaction</div>
-        <div class="col-xl-7">
-          <div class="row" style="padding: 0">
-            <div class="col-xl-6">
-              <select class="form-control form__input" [(ngModel)]="form.t1">
-                <option
-                  *ngFor="let item of transactionPurposes"
-                  [value]="item.value"
-                >
-                  {{ item.text }}
-                </option>
-              </select>
-            </div>
-          </div>
+        <div class="col-xl-5">Purpose of Transaction</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <select class="form-control form__input" [(ngModel)]="form.t1">
+            <option
+              *ngFor="let item of transactionPurposes"
+              [value]="item.value"
+            >
+              {{ item.text }}
+            </option>
+          </select>
         </div>
       </div>
       <div class="row" style="align-items: center">
-        <div class="col-xl-4">Method of Payment</div>
-        <div class="col-xl-7">
-          <div class="row" style="padding: 0">
-            <div class="col-xl-6">
-              <select class="form-control form__input" [(ngModel)]="form.n1">
-                <option
-                  *ngFor="let item of paymentMethods"
-                  [value]="item.value"
-                >
-                  {{ item.text }}
-                </option>
-              </select>
-            </div>
-          </div>
+        <div class="col-xl-5">Method of Payment</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <select class="form-control form__input" [(ngModel)]="form.n1">
+            <option *ngFor="let item of paymentMethods" [value]="item.value">
+              {{ item.text }}
+            </option>
+          </select>
         </div>
       </div>
       <div class="row" style="align-items: center">
-        <div class="col-xl-4">Method of Collection</div>
-        <div class="col-xl-7">
-          <div class="row" style="padding: 0">
-            <div class="col-xl-6">
-              <select class="form-control form__input" [(ngModel)]="form.n2">
-                <option
-                  *ngFor="let item of collectionMethods"
-                  [value]="item.value"
-                >
-                  {{ item.text }}
-                </option>
-              </select>
-            </div>
-          </div>
+        <div class="col-xl-5">Method of Collection</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <select class="form-control form__input" [(ngModel)]="form.n2">
+            <option *ngFor="let item of collectionMethods" [value]="item.value">
+              {{ item.text }}
+            </option>
+          </select>
         </div>
       </div>
       <div class="row" style="align-items: center">
-        <div class="col-xl-4">Remark</div>
-        <div class="col-xl-7">
-          <div class="row" style="padding: 0">
-            <div class="col-xl-6">
-              <textarea class="form-control form__input"></textarea>
-            </div>
-          </div>
+        <div class="col-xl-5">Remark</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <textarea
+            class="form-control form__input"
+            [(ngModel)]="form.fromremark"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-6" *ngIf="form.n1 == '0' && form.n2 == '1'">
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Bank Name/Branch</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.t4"
+          />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Owner's Name</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.t5"
+          />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Account No.</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.t6"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-6" *ngIf="form.n1 == '0' && form.n2 == '2'">
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Wallet</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.t4"
+          />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Name</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.t5"
+          />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Ph No.</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.t6"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-6" *ngIf="form.n1 == '0' && form.n2 == '3'">
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Name</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.t4"
+          />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">NRC</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.t5"
+          />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Address</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.t7"
+          />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Postal Code</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.t8"
+          />
+        </div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-5">Phone No.</div>
+        <div class="col-xl-5" style="padding-left: 2.1rem">
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.t6"
+          />
         </div>
       </div>
     </div>
@@ -178,49 +283,77 @@
           Sender Customer ID<span style="color: red">*</span>
         </div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input type="text" class="form-control form__input" />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Name<span style="color: red">*</span></div>
         <div div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.fromname"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">NRC No<span style="color: red">*</span></div>
         <div div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.fromnrcno"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Unit</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.fromunit"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Building Name</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.frombuildingname"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Township</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.fromtownship"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Division/State</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.fromdivision"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Contact Phone No</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.fromphoneno"
+          />
         </div>
       </div>
     </div>
@@ -228,43 +361,73 @@
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Date of Birth</div>
         <div class="col-xl-5" style="padding-left: 2.1rem">
-          <input type="date" class="form-control form__input" />
+          <input
+            type="date"
+            class="form-control form__input"
+            [(ngModel)]="form.fromdob"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Passport No</div>
         <div div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.frompassportno"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Block</div>
         <div div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.fromblock"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Street</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.fromstreet"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Country</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <div class="autocomplete">
+            <input
+              type="text"
+              class="form-control form__input"
+              [(ngModel)]="form.sendercountry"
+            />
+          </div>
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Postal/Zip</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.frompostalcode"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Email</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.fromemail"
+          />
         </div>
       </div>
     </div>
@@ -285,43 +448,71 @@
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Name<span style="color: red">*</span></div>
         <div div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.toname"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">NRC No<span style="color: red">*</span></div>
         <div div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.tonrc"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Unit</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.tounit"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Building Name</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.tobuildingname"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Township</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.totownship"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Division/State</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.todivision"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Contact Phone No</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.tophoneno"
+          />
         </div>
       </div>
     </div>
@@ -329,43 +520,73 @@
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Date of Birth</div>
         <div class="col-xl-5" style="padding-left: 2.1rem">
-          <input type="date" class="form-control form__input" />
+          <input
+            type="date"
+            class="form-control form__input"
+            [(ngModel)]="form.todob"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Passport No</div>
         <div div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.topassportno"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Block</div>
         <div div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.toblock"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Street</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.tostreet"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Country</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <div class="autocomplete">
+            <input
+              type="text"
+              class="form-control form__input"
+              [(ngModel)]="form.receivercountry"
+            />
+          </div>
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Postal/Zip</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.topostalcode"
+          />
         </div>
       </div>
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Email</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
-          <input class="form-control form__input" />
+          <input
+            type="text"
+            class="form-control form__input"
+            [(ngModel)]="form.toemail"
+          />
         </div>
       </div>
     </div>
