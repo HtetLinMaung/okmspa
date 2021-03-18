@@ -78,6 +78,23 @@ export class CustomerRegistrationComponent
     this.fetchInitialData();
   }
 
+  onNameTitleChanged(e) {
+    setTimeout(() => {
+      const nameTitle = this.nameTitles.find(
+        (v) => v.description == this.form.title
+      );
+      if (nameTitle) {
+        if (nameTitle.sex == 2) {
+          this.form.sex = '1';
+        } else if (nameTitle.sex == 1) {
+          this.form.sex = '2';
+        } else {
+          this.form.sex = '0';
+        }
+      }
+    }, 1000);
+  }
+
   async fetchInitialData() {
     const [
       occupations,
