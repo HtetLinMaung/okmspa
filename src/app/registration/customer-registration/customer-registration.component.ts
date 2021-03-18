@@ -179,7 +179,6 @@ export class CustomerRegistrationComponent
 
   new() {
     this.form = { ...defaultForm, documents: [] };
-    console.log(this.form.documents);
   }
 
   isValidated() {
