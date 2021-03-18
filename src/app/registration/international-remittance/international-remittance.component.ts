@@ -226,6 +226,7 @@ export class InternationalRemittanceComponent
           fromdob: this.form.fromdob + ' 00:00:00.000',
         })
         .subscribe((data) => {
+          alert('Submit Successfully');
           this.new();
         });
     } else {

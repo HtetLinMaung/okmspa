@@ -214,6 +214,7 @@ export class CustomerRegistrationComponent
         // registrationDate: new Date(this.form.registrationDate).toISOString(),
       };
       this.http.doPost('customer-registrations', body).subscribe((data) => {
+        alert('Submit Successfully');
         this.new();
       });
     } else {
