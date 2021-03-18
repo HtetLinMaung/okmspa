@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 import SuggestionListHelper from 'src/app/utils/suggestion-list-helper';
+import * as moment from 'moment';
+import commaNumber from 'comma-number';
 
 const defaultComboData = {
   text: '-',
@@ -77,7 +79,12 @@ export class InternationalRemittanceComponent
   }
 
   ngOnInit(): void {
+    this.form.savedate = moment().format('yyyy-MM-DD');
     this.fetchInitialData();
+  }
+
+  onAmountChanged(e) {
+    this.form.amount = commaNumber(e.target.value);
   }
 
   async fetchInitialData() {
@@ -133,6 +140,38 @@ export class InternationalRemittanceComponent
 
   clearBrowser(key: string) {
     this.form[key] = '';
+    if (key == 'tocustomerid') {
+      this.form.toname = '';
+      this.form.tonrc = '';
+      this.form.tounit = '';
+      this.form.tobuildingname = '';
+      this.form.totownship = '';
+      this.form.todivision = '';
+      this.form.tophoneno = '';
+      this.form.todob = '';
+      this.form.topassportno = '';
+      this.form.toblock = '';
+      this.form.tostreet = '';
+      this.form.receivercountry = '';
+      this.form.topostalcode = '';
+      this.form.toemail = '';
+    } else {
+      this.form.fromremark = '';
+      this.form.fromname = '';
+      this.form.fromnrcno = '';
+      this.form.fromunit = '';
+      this.form.frombuildingname = '';
+      this.form.fromtownship = '';
+      this.form.fromdivision = '';
+      this.form.fromphoneno = '';
+      this.form.fromdob = '';
+      this.form.frompassportno = '';
+      this.form.fromblock = '';
+      this.form.fromstreet = '';
+      this.form.sendercountry = '';
+      this.form.frompostalcode = '';
+      this.form.fromemail = '';
+    }
   }
 
   selectCustomer(customer) {
@@ -198,7 +237,6 @@ export class InternationalRemittanceComponent
       'fromname',
       'fromnrcno',
       'fromcustomerid',
-      'tocustomerid',
       'toname',
       'tonrc',
       'tobuildingname',
@@ -224,6 +262,7 @@ export class InternationalRemittanceComponent
           savedate: this.form.savedate + ' 00:00:00.000',
           todob: this.form.todob + ' 00:00:00.000',
           fromdob: this.form.fromdob + ' 00:00:00.000',
+          amount: this.form.amount.replace(',', ''),
         })
         .subscribe((data) => {
           alert('Submit Successfully');
