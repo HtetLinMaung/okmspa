@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 import { Status } from 'src/app/utils/constants';
 import SuggestionListHelper from 'src/app/utils/suggestion-list-helper';
+import * as moment from 'moment';
 
 const defaultComboData = {
   text: '-',
@@ -73,6 +74,7 @@ export class CustomerRegistrationComponent
   }
 
   ngOnInit(): void {
+    this.form.registrationDate = moment().format('yyyy-MM-DD');
     this.fetchInitialData();
   }
 
@@ -176,7 +178,8 @@ export class CustomerRegistrationComponent
   }
 
   new() {
-    this.form = { ...defaultForm };
+    this.form = { ...defaultForm, documents: [] };
+    console.log(this.form.documents);
   }
 
   isValidated() {
