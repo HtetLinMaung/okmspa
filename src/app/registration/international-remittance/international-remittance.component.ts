@@ -73,6 +73,59 @@ export class InternationalRemittanceComponent
   paymentMethods = [defaultComboData];
   collectionMethods = [defaultComboData];
   currentKey = '';
+  browser = false;
+  fields = [
+    {
+      text: 'Customer ID',
+      value: 'CustomerId',
+    },
+    {
+      text: 'Name',
+      value: 'Name',
+    },
+    {
+      text: 'IC/NRIC/Other ID',
+      value: 'NrcNo',
+    },
+    {
+      text: 'Tel (Resident/Office/Mobile)',
+      value: 'Phone',
+    },
+    {
+      text: 'Email',
+      value: 'Email',
+    },
+    {
+      text: 'Status',
+      value: 'Status',
+    },
+  ];
+  operators = [
+    {
+      text: 'Contains',
+      value: '1',
+    },
+    {
+      text: 'Equal',
+      value: '2',
+    },
+    {
+      text: 'Start With',
+      value: '3',
+    },
+    {
+      text: 'End With',
+      value: '4',
+    },
+  ];
+  filters = [
+    {
+      id: new Date().toISOString(),
+      field: 'CustomerId',
+      operator: '1',
+      search: '',
+    },
+  ];
 
   constructor(private http: HttpService) {
     super();
@@ -81,6 +134,31 @@ export class InternationalRemittanceComponent
   ngOnInit(): void {
     this.form.savedate = moment().format('yyyy-MM-DD');
     this.fetchInitialData();
+  }
+
+  search() {
+    this.http
+      .doPost('customer-registrations/search', {
+        filters: this.filters,
+      })
+      .subscribe((data: any) => {
+        this.customers = data;
+      });
+  }
+
+  addFilter() {
+    this.filters.push({
+      id: new Date().toISOString(),
+      field: 'CustomerId',
+      operator: '1',
+      search: '',
+    });
+  }
+
+  removeFilter({ id }) {
+    if (this.filters.length > 1) {
+      this.filters = this.filters.filter((filter) => filter.id != id);
+    }
   }
 
   onAmountChanged(e) {
@@ -93,15 +171,13 @@ export class InternationalRemittanceComponent
       transactionPurposes,
       paymentMethods,
       collectionMethods,
-      customers,
     ] = await this.http.doGetManyAsync([
       'customer-registrations/countries',
       'international-remittances/transaction-purposes',
       'international-remittances/payment-methods',
       'international-remittances/collection-methods',
-      'customer-registrations',
     ]);
-    this.customers = [...customers];
+
     this.countries = [{ countryName: '-' }, ...countries];
     this.transactionPurposes = [defaultComboData, ...transactionPurposes];
     this.paymentMethods = [
@@ -125,17 +201,24 @@ export class InternationalRemittanceComponent
   browseCustomers(key: string, e) {
     e.stopPropagation();
     this.currentKey = key;
-    const dialogEle = document.getElementById('customer-browser');
-    dialogEle.style.left = e.pageX + 'px';
-    dialogEle.style.top = e.pageY + 'px';
-    // dialogEle.style.display = 'block';
+
+    this.browser = true;
+    this.http.doGet('customer-registrations').subscribe((data: any) => {
+      this.customers = data;
+    });
   }
 
-  closeBrowser() {
-    const dialogEle = document.getElementById('customer-browser');
-    // dialogEle.style.display = 'none';
-    dialogEle.style.top = '-1000px';
-    dialogEle.style.left = '45%';
+  closeBrowser(e) {
+    e.stopPropagation();
+    this.browser = false;
+    this.filters = [
+      {
+        id: new Date().toISOString(),
+        field: 'CustomerId',
+        operator: '1',
+        search: '',
+      },
+    ];
   }
 
   clearBrowser(key: string) {
@@ -209,7 +292,15 @@ export class InternationalRemittanceComponent
         this.form.receivercountry = customer.country;
         this.form.toemail = customer.email;
     }
-    this.closeBrowser();
+    this.browser = false;
+    this.filters = [
+      {
+        id: new Date().toISOString(),
+        field: 'CustomerId',
+        operator: '1',
+        search: '',
+      },
+    ];
   }
 
   onCountryChanged(key: string) {

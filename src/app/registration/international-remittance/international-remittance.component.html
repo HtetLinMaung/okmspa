@@ -1,4 +1,4 @@
-<div class="container-fluid __root" (click)="closeBrowser()">
+<div class="container-fluid __root">
   <div class="__title" style="margin: 0.5rem 0">
     International Remittance (Send Money)
   </div>
@@ -639,12 +639,68 @@
   </div>
 </div>
 
-<div id="customer-browser" class="__menu">
-  <div
-    class="list__item"
-    (click)="selectCustomer(customer)"
-    *ngFor="let customer of customers"
-  >
-    {{ customer.customerId }}
+<div *ngIf="browser" class="__modal">
+  <div class="modal__content">
+    <div style="display: flex; justify-content: flex-end">
+      <i class="fas fa-times-circle" (click)="closeBrowser($event)"></i>
+    </div>
+    <div class="row" style="align-items: center" *ngFor="let filter of filters">
+      <div class="col-xl-2" style="padding: 2px">
+        <select class="form-control form__input" [(ngModel)]="filter.field">
+          <option *ngFor="let item of fields" [value]="item.value">
+            {{ item.text }}
+          </option>
+        </select>
+      </div>
+      <div class="col-xl-2" style="padding: 2px">
+        <select class="form-control form__input" [(ngModel)]="filter.operator">
+          <option *ngFor="let item of operators" [value]="item.value">
+            {{ item.text }}
+          </option>
+        </select>
+      </div>
+      <div class="col-xl-3" style="padding: 2px">
+        <input
+          type="text"
+          class="form-control form__input"
+          [(ngModel)]="filter.search"
+        />
+      </div>
+      <button
+        class="btn icon__btn"
+        (click)="search()"
+        style="background-color: #ececec"
+      >
+        <i class="fas fa-search"></i>
+      </button>
+      <button class="btn icon__btn" (click)="removeFilter(filter)">
+        <i class="fas fa-times-circle" style="color: red"></i>
+      </button>
+      <button class="btn icon__btn" (click)="addFilter()">
+        <i class="fas fa-plus-circle" style="color: blue"></i>
+      </button>
+    </div>
+    <div class="row">
+      <table class="table __table">
+        <thead>
+          <tr>
+            <th *ngFor="let field of fields">{{ field.text }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let customer of customers"
+            (click)="selectCustomer(customer)"
+          >
+            <td>{{ customer.customerId }}</td>
+            <td>{{ customer.name }}</td>
+            <td>{{ customer.nrcNo }}</td>
+            <td>{{ customer.phone }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
