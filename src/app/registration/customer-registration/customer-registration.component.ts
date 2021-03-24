@@ -25,7 +25,7 @@ const defaultForm = {
   fatherName: '',
   registrationDate: '',
   dateOfBirth: '',
-  sex: '1',
+  sex: '2',
   mStatus: '1',
   phone: '',
   email: '',
