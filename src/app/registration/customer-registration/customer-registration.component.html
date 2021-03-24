@@ -121,7 +121,12 @@
           />
         </div>
         <div class="col-xl-1" style="padding-left: 0 !important">
-          <button class="btn btn-light btn__check __raised">Check</button>
+          <button
+            class="btn btn-light btn__check __raised"
+            (click)="checkField('nrcNo')"
+          >
+            Check
+          </button>
         </div>
       </div>
       <div class="row" style="align-items: center">
@@ -134,7 +139,12 @@
           />
         </div>
         <div class="col-xl-1" style="padding-left: 0 !important">
-          <button class="btn btn-light btn__check __raised">Check</button>
+          <button
+            class="btn btn-light btn__check __raised"
+            (click)="checkField('passportNo')"
+          >
+            Check
+          </button>
         </div>
       </div>
       <div class="row" style="align-items: center">
@@ -172,13 +182,39 @@
             (click)="pickImage()"
           >
             <div
-              style="display: flex; align-items: center; flex-direction: column"
+              style="
+                display: flex;
+                align-items: stretch;
+                flex-direction: column;
+                flex: 1;
+              "
             >
-              <i
-                class="far fa-user"
-                style="font-size: 5rem; color: #efefef"
-              ></i>
-              <div style="padding-top: 1rem">Choose Photo</div>
+              <div
+                style="
+                  display: flex;
+                  flex: 1;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <i
+                  class="far fa-user"
+                  style="font-size: 5rem; color: #efefef"
+                ></i>
+              </div>
+
+              <div
+                style="
+                  padding: 1rem;
+                  font-weight: bold;
+                  background-color: #e1e8ec;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                Choose Photo
+              </div>
             </div>
           </div>
         </div>
@@ -469,4 +505,8 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="__alert" [style]="{ backgroundColor: alertOptions.background }">
+  {{ alertOptions.message }}
 </div>

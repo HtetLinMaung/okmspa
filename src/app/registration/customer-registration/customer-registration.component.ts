@@ -3,6 +3,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { Status } from 'src/app/utils/constants';
 import SuggestionListHelper from 'src/app/utils/suggestion-list-helper';
 import * as moment from 'moment';
+import CommonUtils from 'src/app/utils/common-utils';
 
 const defaultComboData = {
   text: '-',
@@ -48,7 +49,7 @@ const defaultForm = {
   styleUrls: ['./customer-registration.component.css'],
 })
 export class CustomerRegistrationComponent
-  extends SuggestionListHelper
+  extends CommonUtils
   implements OnInit {
   form = { ...defaultForm };
   sectors = [defaultComboData];
@@ -196,6 +197,7 @@ export class CustomerRegistrationComponent
 
   new() {
     this.form = { ...defaultForm, documents: [] };
+    this.form.registrationDate = moment().format('yyyy-MM-DD');
   }
 
   isValidated() {
@@ -254,5 +256,28 @@ export class CustomerRegistrationComponent
       fr.readAsDataURL(file);
     }
     e.target.value = '';
+  }
+
+  checkField(field: string) {
+    if (!this.form[field]) {
+      return alert('Please fill field first!');
+    }
+    this.http
+      .doPost(
+        `customer-registrations/check-${field == 'nrcNo' ? 'nrc' : 'passport'}`,
+        {
+          nrcNo: this.form.nrcNo,
+          passportNo: this.form.passportNo,
+        }
+      )
+      .subscribe((data: { message: string }) => {
+        this.alertOptions.message = data.message;
+        if (data.message.startsWith('V')) {
+          this.alertOptions.background = 'green';
+        } else {
+          this.alertOptions.background = 'orange';
+        }
+        this.openAlert();
+      });
   }
 }

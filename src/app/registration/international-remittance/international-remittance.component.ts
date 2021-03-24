@@ -162,7 +162,9 @@ export class InternationalRemittanceComponent
   }
 
   onAmountChanged(e) {
-    this.form.amount = commaNumber(e.target.value);
+    this.form.amount = commaNumber(
+      parseFloat(this.form.amount || '0').toFixed(2)
+    );
   }
 
   async fetchInitialData() {
@@ -199,13 +201,10 @@ export class InternationalRemittanceComponent
   }
 
   browseCustomers(key: string, e) {
+    this.customers = [];
     e.stopPropagation();
     this.currentKey = key;
-
     this.browser = true;
-    this.http.doGet('customer-registrations').subscribe((data: any) => {
-      this.customers = data;
-    });
   }
 
   closeBrowser(e) {
@@ -317,6 +316,7 @@ export class InternationalRemittanceComponent
 
   new() {
     this.form = { ...defaultForm };
+    this.form.savedate = moment().format('yyyy-MM-DD');
   }
 
   isValidated() {
