@@ -85,13 +85,7 @@ export class CustomerRegistrationComponent
         (v) => v.description == this.form.title
       );
       if (nameTitle) {
-        if (nameTitle.sex == 2) {
-          this.form.sex = '1';
-        } else if (nameTitle.sex == 1) {
-          this.form.sex = '2';
-        } else {
-          this.form.sex = '0';
-        }
+        this.form.sex = nameTitle.sex.toString();
       }
     }, 1000);
   }
