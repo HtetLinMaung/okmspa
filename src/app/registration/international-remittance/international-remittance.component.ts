@@ -173,11 +173,13 @@ export class InternationalRemittanceComponent
       transactionPurposes,
       paymentMethods,
       collectionMethods,
+      addresses,
     ] = await this.http.doGetManyAsync([
       'customer-registrations/countries',
       'international-remittances/transaction-purposes',
       'international-remittances/payment-methods',
       'international-remittances/collection-methods',
+      'customer-registrations/addresses',
     ]);
 
     this.countries = [{ countryName: '-' }, ...countries];
@@ -198,6 +200,44 @@ export class InternationalRemittanceComponent
         oldValue: v.value,
       })),
     ];
+    this.autocomplete(
+      document.getElementById('senderCountrySuggest'),
+      this.countries.map((v) => v.countryName),
+      this.form,
+      'sendercountry'
+    );
+    this.autocomplete(
+      document.getElementById('receiverCountrySuggest'),
+      this.countries.map((v) => v.countryName),
+      this.form,
+      'receivercountry'
+    );
+
+    const addressList = addresses.map((v) => v.descEng);
+    this.autocomplete(
+      document.getElementById('fromTownshipSuggest'),
+      addressList,
+      this.form,
+      'fromtownship'
+    );
+    this.autocomplete(
+      document.getElementById('toTownshipSuggest'),
+      addressList,
+      this.form,
+      'totownship'
+    );
+    this.autocomplete(
+      document.getElementById('toDivisionSuggest'),
+      addressList,
+      this.form,
+      'todivision'
+    );
+    this.autocomplete(
+      document.getElementById('fromDivisionSuggest'),
+      addressList,
+      this.form,
+      'fromdivision'
+    );
   }
 
   browseCustomers(key: string, e) {

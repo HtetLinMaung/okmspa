@@ -358,6 +358,7 @@
         <div class="col-xl-5">Township</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
           <input
+            id="fromTownshipSuggest"
             type="text"
             class="form-control form__input"
             [(ngModel)]="form.fromtownship"
@@ -368,6 +369,7 @@
         <div class="col-xl-5">Division/State</div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
           <input
+            id="fromDivisionSuggest"
             type="text"
             class="form-control form__input"
             [(ngModel)]="form.fromdivision"
@@ -431,6 +433,7 @@
         <div class="col-xl-6" style="padding-left: 2.1rem">
           <div class="autocomplete">
             <input
+              id="senderCountrySuggest"
               type="text"
               class="form-control form__input"
               [(ngModel)]="form.sendercountry"
@@ -531,6 +534,7 @@
         <div class="col-xl-5">Township<span style="color: red">*</span></div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
           <input
+            id="toTownshipSuggest"
             type="text"
             class="form-control form__input"
             [(ngModel)]="form.totownship"
@@ -543,6 +547,7 @@
         </div>
         <div class="col-xl-6" style="padding-left: 2.1rem">
           <input
+            id="toDivisionSuggest"
             type="text"
             class="form-control form__input"
             [(ngModel)]="form.todivision"
@@ -608,6 +613,7 @@
         <div class="col-xl-6" style="padding-left: 2.1rem">
           <div class="autocomplete">
             <input
+              id="receiverCountrySuggest"
               type="text"
               class="form-control form__input"
               [(ngModel)]="form.receivercountry"
