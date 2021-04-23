@@ -196,7 +196,7 @@ export class CustomerRegistrationComponent
 
   isValidated() {
     const requiredFields = [
-      'customerType',
+      // 'customerType',
       'name',
       'nrcNo',
       'fatherName',
