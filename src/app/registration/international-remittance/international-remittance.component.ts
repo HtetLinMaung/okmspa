@@ -18,6 +18,7 @@ const defaultForm = {
   t8: '', // MyanmarPost(Postal Code)
   n1: '-', // payment method
   n2: '-', // collection method
+  n3: '1', // wallet type
   fromcountry: '-',
   tocountry: '-',
   savedate: '',
@@ -72,6 +73,7 @@ export class InternationalRemittanceComponent
   transactionPurposes = [defaultComboData];
   paymentMethods = [defaultComboData];
   collectionMethods = [defaultComboData];
+  walletTypes = [defaultComboData];
   currentKey = '';
   browser = false;
   fields = [
@@ -174,32 +176,25 @@ export class InternationalRemittanceComponent
       paymentMethods,
       collectionMethods,
       addresses,
+      walletTypes,
     ] = await this.http.doGetManyAsync([
       'customer-registrations/countries',
       'international-remittances/transaction-purposes',
       'international-remittances/payment-methods',
       'international-remittances/collection-methods',
       'customer-registrations/addresses',
+      'international-remittances/wallet-types',
     ]);
 
     this.countries = [{ countryName: '-' }, ...countries];
     this.transactionPurposes = [defaultComboData, ...transactionPurposes];
-    this.paymentMethods = [
-      defaultComboData,
-      ...paymentMethods.map((v) => ({
-        ...v,
-        value: (v.value - 1).toString(),
-        oldValue: v.value,
-      })),
-    ];
-    this.collectionMethods = [
-      defaultComboData,
-      ...collectionMethods.map((v) => ({
-        ...v,
-        value: (v.value - 1).toString(),
-        oldValue: v.value,
-      })),
-    ];
+    this.walletTypes = [...walletTypes];
+    this.paymentMethods = [defaultComboData, ...paymentMethods];
+    this.collectionMethods = [defaultComboData, ...collectionMethods];
+    if (this.walletTypes.length) {
+      this.form.n3 = this.walletTypes[0].value;
+      console.log(this.form.n3);
+    }
     this.autocomplete(
       document.getElementById('senderCountrySuggest'),
       this.countries.map((v) => v.countryName),

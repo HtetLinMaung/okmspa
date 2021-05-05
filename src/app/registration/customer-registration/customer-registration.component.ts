@@ -7,14 +7,14 @@ import CommonUtils from 'src/app/utils/common-utils';
 
 const defaultComboData = {
   text: '-',
-  value: '0',
+  value: '-',
 };
 
 const defaultForm = {
   t2: 'SysAdmin',
   isHasDoc: false,
   status: Status.Save,
-  customerType: '0',
+  customerType: '1',
   title: '',
   name: '',
   aliasName: '',
