@@ -4,6 +4,7 @@ import { Status } from 'src/app/utils/constants';
 import SuggestionListHelper from 'src/app/utils/suggestion-list-helper';
 import * as moment from 'moment';
 import CommonUtils from 'src/app/utils/common-utils';
+import nrc from '../../../constants/nrc';
 
 const defaultComboData = {
   text: '-',
@@ -50,7 +51,8 @@ const defaultForm = {
 })
 export class CustomerRegistrationComponent
   extends CommonUtils
-  implements OnInit {
+  implements OnInit
+{
   form = { ...defaultForm };
   sectors = [defaultComboData];
   occupations = [defaultComboData];
@@ -91,17 +93,13 @@ export class CustomerRegistrationComponent
   }
 
   async fetchInitialData() {
-    const [
-      occupations,
-      nameTitles,
-      countries,
-      addresses,
-    ] = await this.http.doGetManyAsync([
-      'customer-registrations/occupations',
-      'customer-registrations/name-titles',
-      'customer-registrations/countries',
-      'customer-registrations/addresses',
-    ]);
+    const [occupations, nameTitles, countries, addresses] =
+      await this.http.doGetManyAsync([
+        'customer-registrations/occupations',
+        'customer-registrations/name-titles',
+        'customer-registrations/countries',
+        'customer-registrations/addresses',
+      ]);
     this.occupations = [...this.occupations, ...occupations];
     this.nameTitles = nameTitles;
     this.countries = countries;
@@ -130,6 +128,12 @@ export class CustomerRegistrationComponent
       addressList,
       this.form,
       'division'
+    );
+    this.autocomplete(
+      document.getElementById('nrcNoSuggest'),
+      nrc,
+      this.form,
+      'nrcNo'
     );
     this.fetchCustomerTypes(0, 99);
   }

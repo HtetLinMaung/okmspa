@@ -118,6 +118,7 @@
             type="text"
             class="form-control form__input"
             [(ngModel)]="form.nrcNo"
+            id="nrcNoSuggest"
           />
         </div>
         <div class="col-xl-1" style="padding-left: 0 !important">
@@ -431,7 +432,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-4">Township<span style="color: red">*</span></div>
+        <div class="col-xl-4">
+          Township/Revenu/Ward<span style="color: red">*</span>
+        </div>
         <div class="col-xl-7">
           <div class="autocomplete">
             <input

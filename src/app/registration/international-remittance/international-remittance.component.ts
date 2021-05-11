@@ -373,6 +373,9 @@ export class InternationalRemittanceComponent
       'receivercountry',
     ];
     for (const field of requiredFields) {
+      if (field == 'amount' && this.form[field] == '0.00') {
+        return false;
+      }
       if (this.form[field] == '-' || !this.form[field]) {
         return false;
       }
