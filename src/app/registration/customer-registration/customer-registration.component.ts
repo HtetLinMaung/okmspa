@@ -77,7 +77,9 @@ export class CustomerRegistrationComponent
   }
 
   ngOnInit(): void {
+    console.log('ngOnInit');
     this.form.registrationDate = moment().format('yyyy-MM-DD');
+    this.form.documents = [];
     this.fetchInitialData();
   }
 
