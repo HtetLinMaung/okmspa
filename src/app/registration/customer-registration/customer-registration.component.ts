@@ -71,16 +71,23 @@ export class CustomerRegistrationComponent
     },
   ];
   selectedFilter = '1';
+  readonlyNationality = false;
+  readonlyCountry = false;
 
   constructor(private http: HttpService) {
     super();
   }
 
   ngOnInit(): void {
-    console.log('ngOnInit');
     this.form.registrationDate = moment().format('yyyy-MM-DD');
     this.form.documents = [];
     this.fetchInitialData();
+    if (this.form.customerType == '1') {
+      this.form.nationalityStatus = 'Myanmar';
+      this.readonlyNationality = true;
+      this.form.country = 'Myanmar';
+      this.readonlyCountry = true;
+    }
   }
 
   onNameTitleChanged(e) {
@@ -279,5 +286,19 @@ export class CustomerRegistrationComponent
         }
         this.openAlert();
       });
+  }
+
+  customerTypeChanged(e) {
+    if (e.target.value == '1') {
+      this.form.nationalityStatus = 'Myanmar';
+      this.form.country = 'Myanmar';
+      this.readonlyNationality = true;
+      this.readonlyCountry = true;
+    } else {
+      this.form.nationalityStatus = '';
+      this.form.country = '';
+      this.readonlyNationality = false;
+      this.readonlyCountry = false;
+    }
   }
 }

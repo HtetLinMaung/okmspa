@@ -55,6 +55,7 @@
               <select
                 class="form-control form__input"
                 [(ngModel)]="form.customerType"
+                (change)="customerTypeChanged($event)"
               >
                 <option *ngFor="let item of customerTypes" [value]="item.value">
                   {{ item.text }}
@@ -64,7 +65,7 @@
           </div>
         </div>
       </div>
-      <div class="row" style="align-items: center">
+      <!-- <div class="row" style="align-items: center">
         <div class="col-xl-4">Sector (Optional)</div>
         <div class="col-xl-7">
           <select class="form-control form__input" [(ngModel)]="form.sector">
@@ -73,7 +74,7 @@
             </option>
           </select>
         </div>
-      </div>
+      </div> -->
       <div class="row" style="align-items: center">
         <div class="col-xl-4">Name<span style="color: red">*</span></div>
         <div class="col-xl-7">
@@ -347,6 +348,17 @@
         </div>
       </div>
       <div class="row" style="align-items: center">
+        <div class="col-xl-5">Sector</div>
+        <div class="col-xl-7">
+          <select class="form-control form__input" [(ngModel)]="form.sector">
+            <option *ngFor="let item of sectors" [value]="item.value">
+              {{ item.text }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" style="align-items: center">
         <div class="col-xl-5">Telephone<span style="color: red">*</span></div>
         <div class="col-xl-7">
           <input
@@ -370,6 +382,7 @@
         <div class="col-xl-5">Nationality</div>
         <div class="col-xl-7">
           <input
+            [readonly]="readonlyNationality"
             type="text"
             class="form-control form__input"
             [(ngModel)]="form.nationalityStatus"
@@ -488,6 +501,7 @@
         <div class="col-xl-7">
           <div class="autocomplete">
             <input
+              [readonly]="readonlyCountry"
               id="countrySuggest"
               type="text"
               class="form-control form__input"

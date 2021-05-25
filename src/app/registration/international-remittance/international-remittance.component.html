@@ -118,6 +118,25 @@
           </div>
         </div>
       </div>
+      <div class="row" style="align-items: center">
+        <div class="col-xl-4">
+          Method of Collection<span style="color: red">*</span>
+        </div>
+        <div class="col-xl-7">
+          <div class="row" style="padding: 0">
+            <div class="col-xl-6">
+              <select class="form-control form__input" [(ngModel)]="form.n2">
+                <option
+                  *ngFor="let item of collectionMethods"
+                  [value]="item.value"
+                >
+                  {{ item.text }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="__title" style="margin: 1rem 0">Transaction Detail</div>
@@ -147,7 +166,7 @@
           </select>
         </div>
       </div>
-      <div class="row" style="align-items: center">
+      <!-- <div class="row" style="align-items: center">
         <div class="col-xl-5">Method of Collection</div>
         <div class="col-xl-5" style="padding-left: 2.1rem">
           <select class="form-control form__input" [(ngModel)]="form.n2">
@@ -156,7 +175,7 @@
             </option>
           </select>
         </div>
-      </div>
+      </div> -->
       <div class="row" style="align-items: center">
         <div class="col-xl-5">Remark</div>
         <div class="col-xl-5" style="padding-left: 2.1rem">
